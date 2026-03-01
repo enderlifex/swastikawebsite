@@ -3,32 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Strona z Obrazkiem</title> <style>
+    <title>Kręcący się obrazek</title>
+    <style>
+        /* Wygląd strony */
         body { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
             margin: 0; 
-            background-color: #222; /* Ciemne tło dla lepszego efektu */
+            background-color: #1a1a1a; /* Ciemne tło */
             flex-direction: column;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Styl guzika */
+        /* Wygląd guzika */
         #przycisk {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: bold;
             cursor: pointer;
-            background-color: #ff4757;
+            background-color: #e74c3c;
             color: white;
             border: none;
-            border-radius: 8px;
-            transition: 0.3s;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s, background-color 0.2s;
         }
 
         #przycisk:hover {
-            background-color: #ff6b81;
+            background-color: #ff5e4d;
+            transform: scale(1.05);
         }
 
         /* Animacja kręcenia */
@@ -37,11 +42,13 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Styl obrazka */
+        /* Wygląd obrazka */
         #mojObraz {
-            display: none; /* Ukryty na początku */
-            width: 300px;  /* Tu możesz zmienić wielkość */
-            animation: spin 3s linear infinite; /* 3s to prędkość kręcenia */
+            display: none; /* Ukryty na starcie */
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+            animation: spin 2s linear infinite; /* Kręci się szybko (2 sekundy) */
         }
     </style>
 </head>
@@ -49,13 +56,13 @@
 
     <button id="przycisk" onclick="pokazObraz()">Czy na pewno wyświetlić obraz?</button>
     
-    <img id="mojObraz" src="C:\Nowy folder\images.png" alt="Kręcący się obrazek">
+    <img id="mojObraz" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-lEgumwRSXkcKkpFs2j8pgav4VLLIvvWDYw&s" alt="Kręcący się obrazek">
 
     <script>
         function pokazObraz() {
             // Pokazuje obrazek
             document.getElementById('mojObraz').style.display = 'block';
-            // Ukrywa guzik
+            // Ukrywa przycisk
             document.getElementById('przycisk').style.display = 'none';
         }
     </script>
