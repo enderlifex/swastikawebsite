@@ -2,22 +2,21 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kręcący się obrazek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
-        /* Wygląd strony */
         body { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
             margin: 0; 
-            background-color: #1a1a1a; /* Ciemne tło */
+            background-color: #1a1a1a;
             flex-direction: column;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Wygląd guzika */
         #przycisk {
             padding: 20px 40px;
             font-size: 20px;
@@ -36,35 +35,53 @@
             transform: scale(1.05);
         }
 
-        /* Animacja kręcenia */
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* Wygląd obrazka */
         #mojObraz {
-            display: none; /* Ukryty na starcie */
+            display: none;
             width: 250px;
             height: auto;
             border-radius: 10px;
-            animation: spin 2s linear infinite; /* Kręci się szybko (2 sekundy) */
+            animation: spin 2s linear infinite;
         }
     </style>
 </head>
 <body>
 
-    <button id="przycisk" onclick="pokazObraz()">Czy na pewno wyświetlić obraz?</button>
+    <button id="przycisk">Czy na pewno wyświetlić obraz?</button>
     
-    <img id="mojObraz" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-lEgumwRSXkcKkpFs2j8pgav4VLLIvvWDYw&s" alt="Kręcący się obrazek">
+    <img id="mojObraz" 
+         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-lEgumwRSXkcKkpFs2j8pgav4VLLIvvWDYw&s" 
+         alt="Kręcący się obrazek">
+
+    <audio id="mojaMuzyka"
+           src="https://raw.githubusercontent.com/enderlifex/swastikawebsite/main/erika.mp3"
+           loop>
+    </audio>
 
     <script>
-        function pokazObraz() {
-            // Pokazuje obrazek
-            document.getElementById('mojObraz').style.display = 'block';
-            // Ukrywa przycisk
-            document.getElementById('przycisk').style.display = 'none';
-        }
+        const przycisk = document.getElementById("przycisk");
+        const obraz = document.getElementById("mojObraz");
+        const audio = document.getElementById("mojaMuzyka");
+
+        przycisk.addEventListener("click", () => {
+            // Pokaż obraz
+            obraz.style.display = "block";
+
+            // Ukryj przycisk
+            przycisk.style.display = "none";
+
+            // Ustaw głośność
+            audio.volume = 1.0;
+
+            // Odtwórz muzykę
+            audio.play().catch(error => {
+                console.log("Autoplay zablokowany:", error);
+            });
+        });
     </script>
 
 </body>
